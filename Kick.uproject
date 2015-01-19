@@ -1,6 +1,13 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "4.5",
+	"EngineAssociation": "4.6",
 	"Category": "",
-	"Description": ""
+	"Description": "",
+	"Modules": [
+		{
+			"Name": "Kick",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
 }
