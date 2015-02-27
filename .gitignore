@@ -4,7 +4,9 @@
 *.sln
 *.rc
 *.suo
+*.opensdf
 Build
 Intermediate
 Saved
 Binaries
+
