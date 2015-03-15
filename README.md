@@ -1,4 +1,4 @@
 kick
 ====
 
-A Neo-Brawler based on Unreal Engine 4.
+A modern beat'em all based on Unreal Engine 4.
