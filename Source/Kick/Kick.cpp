@@ -2,4 +2,4 @@
 
 #include "Kick.h"
 
-IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, Kick, "Kick" );
+IMPLEMENT_PRIMARY_GAME_MODULE(FDefaultGameModuleImpl, Kick, "Kick");

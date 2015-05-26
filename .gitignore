@@ -5,7 +5,7 @@
 *.rc
 *.suo
 *.opensdf
-Build
+Build/Receipts
 Intermediate
 Saved
 Binaries
