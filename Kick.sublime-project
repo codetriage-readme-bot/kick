@@ -3,6 +3,14 @@
 	[
 		{
 			"path": "Source/Kick"
+		},
+		{
+			"name": "Headers",
+			"path": "/Users/Shared/UnrealEngine/4.8/Engine/Source/Runtime/Engine/Classes/GameFramework"
+		},
+		{
+			"name": "Implementations",
+			"path": "/Users/Shared/UnrealEngine/4.8/Engine/Source/Runtime/Engine/Private"
 		}
 	]
 }

@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"A",
+				"ABaseFighter"
+			],
+			[
 				"allowe",
 				"allowedRates"
 			],
@@ -510,77 +514,41 @@
 			[
 				"Depa",
 				"DepartmentGroup"
-			],
-			[
-				"ret",
-				"retimeTarget"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "Source/Kick/StateMachineComponent.cpp",
+			"file": "Source/Kick/BaseFighter.h",
 			"settings":
 			{
-				"buffer_size": 1213,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": ".gitignore",
-			"settings":
-			{
-				"buffer_size": 99,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "/Users/Douglas/Library/Application Support/Sublime Text 3/Packages/User/clang_format.sublime-settings",
-			"settings":
-			{
-				"buffer_size": 45,
+				"buffer_size": 925,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Source/Kick/StateMachineComponent.h",
+			"file": "Source/Kick/BaseFighter.cpp",
 			"settings":
 			{
-				"buffer_size": 1332,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Source/Kick/Kick.cpp",
-			"settings":
-			{
-				"buffer_size": 168,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Source/Kick/Kick.Build.cs",
-			"settings":
-			{
-				"buffer_size": 341,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "Source/Kick/State.h",
-			"settings":
-			{
-				"buffer_size": 646,
+				"buffer_size": 2572,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "Source/Kick/Kick.h",
+			"file": "Source/Kick/FighterMovementComponent.h",
 			"settings":
 			{
-				"buffer_size": 114,
-				"line_ending": "Windows"
+				"buffer_size": 317,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/Users/Douglas/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 1955,
+				"line_ending": "Unix"
 			}
 		}
 	],
@@ -591,13 +559,21 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 174.0,
+		"height": 222.0,
 		"last_filter": "format",
 		"selected_items":
 		[
 			[
 				"format",
 				"Clang Format: Format Selection"
+			],
+			[
+				"formar",
+				"Clang Format: Format Selection"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
 			],
 			[
 				"clang",
@@ -650,10 +626,6 @@
 			[
 				"comi",
 				"TortoiseSVN: Commit"
-			],
-			[
-				"remove",
-				"Package Control: Remove Package"
 			],
 			[
 				"com",
@@ -865,6 +837,21 @@
 	],
 	"file_history":
 	[
+		"/Users/Douglas/Google/Work/Projects/Punch/Code/Source/Kick/Kick.h",
+		"/Users/Douglas/Google/Work/Projects/Punch/Code/Source/Kick/State.h",
+		"/Users/Douglas/Google/Work/Projects/Punch/Code/Source/Kick/Kick.Build.cs",
+		"/Users/Douglas/Google/Work/Projects/Punch/Code/Source/Kick/StateMachineComponent.cpp",
+		"/Users/Douglas/Google/Work/Projects/Punch/Code/Source/Kick/BaseFighter.cpp",
+		"/Users/Douglas/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
+		"/Users/Douglas/.profile",
+		"/Users/Douglas/.zshrc",
+		"/Users/Douglas/Google/Work/Projects/Punch/Code/Source/Kick/BaseFighter.h",
+		"/Users/Douglas/Google/Work/Projects/Punch/Code/Source/Kick/FighterMovementComponent.cpp",
+		"/Users/Douglas/Google/Work/Projects/Punch/Code/Source/Kick/StateMachineComponent.h",
+		"/Users/Douglas/Google/Work/Projects/Punch/Code/Source/Kick/Kick.cpp",
+		"/Users/Douglas/Google/Work/Projects/Punch/Code/Source/Kick/FighterMovementComponent.h",
+		"/Users/Douglas/Library/Application Support/Sublime Text 3/Packages/User/clang_format.sublime-settings",
+		"/Users/Douglas/Google/Work/Projects/Punch/Code/.gitignore",
 		"/Users/Douglas/Library/Application Support/Sublime Text 3/Packages/Clang Format/clang_format.sublime-settings",
 		"/C/Users/dougl/AppData/Roaming/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 		"/C/Users/dougl/AppData/Roaming/Sublime Text 3/Packages/SublimeLinter/SublimeLinter.sublime-settings",
@@ -977,26 +964,11 @@
 		"//source/source/dev/dougl/blurdev/code/python/tools/retimer/main.pyw",
 		"//source/source/dev/dougl/blurdev/code/python/lib/blur3d/api/studiomax/studiomaxsceneviewport.py",
 		"//source/source/dev/dougl/blur.sublime-project",
-		"//source/source/dev/dougl/blurdev/code/python/lib/blur3d/api/abstract/abstractscenematerial.py",
-		"//source/source/dev/beaty/blur.sublime-project",
-		"//source/source/dev/dougl/blurdev/code/python/lib/blur3d/pipe/cinematic/gui/dialog/ui/shotimporterdialog.ui",
-		"//source/source/dev/dougl/blur/python/blurdev/runtimes/treegrunt.py",
-		"//source/source/dev/dougl/blur/python/blurdev/gui/window.py",
-		"//source/source/dev/dougl/blurdev/code/python/tools/Treegrunt/main.pyw",
-		"//source/source/dev/dougl/blur/python/blurdev/gui/dialogs/treegruntdialog/__init__.py",
-		"//source/source/dev/dougl/blur/python/blurdev/gui/delegates/combocheckboxdelegate.py",
-		"//source/source/dev/dougl/blur/python/blurdev/gui/delegates/__init__.py",
-		"//source/source/dev/dougl/blur/python/blurdev/gui/delegates/griddelegate.py",
-		"//source/source/dev/dougl/blurdev/code/python/lib/blur3d/lib/enum.py",
-		"/C/Users/dougl/AppData/Local/Temp/Rar$DI00.214/Readme.txt",
-		"/E/Google Drive/Applications/Emulators/MESS/hash/nes.xml",
-		"/C/Users/dougl/Dropbox/Work/Projects/Punch/Code/Kick/Intermediate/Build/Unused/Kick.log",
-		"//source/source/dev/dougl/blurdev/code/python/lib/blur3d/api/abstract/abstractsceneviewport.py",
-		"//source/source/dev/dougl/blurdev/code/python/lib/blur3d/pipe/cinematic/gui/window/assetmanagerwindow.py"
+		"//source/source/dev/dougl/blurdev/code/python/lib/blur3d/api/abstract/abstractscenematerial.py"
 	],
 	"find":
 	{
-		"height": 21.0
+		"height": 38.0
 	},
 	"find_in_files":
 	{
@@ -1089,6 +1061,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"ADefaultPawn",
 			"x",
 			"checkShotImporability",
 			"rate",
@@ -1215,8 +1188,7 @@
 			"reset",
 			"linear",
 			"qmessage",
-			"msg",
-			"rang"
+			"msg"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1235,59 +1207,30 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "Source/Kick/StateMachineComponent.cpp",
+					"file": "Source/Kick/BaseFighter.h",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1213,
+						"buffer_size": 925,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								541,
-								541
+								649,
+								649
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": ".gitignore",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 99,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								99,
-								99
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -1297,78 +1240,49 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
-					"file": "/Users/Douglas/Library/Application Support/Sublime Text 3/Packages/User/clang_format.sublime-settings",
+					"buffer": 1,
+					"file": "Source/Kick/BaseFighter.cpp",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 45,
+						"buffer_size": 2572,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "Source/Kick/StateMachineComponent.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1332,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								351,
-								351
+								2415,
+								2436
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/C++/C++.tmLanguage",
-							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.x": -0.0,
+						"translation.y": 519.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "Source/Kick/Kick.cpp",
-					"semi_transient": false,
+					"buffer": 2,
+					"file": "Source/Kick/FighterMovementComponent.h",
+					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 168,
+						"buffer_size": 317,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								167,
-								167
+								228,
+								253
 							]
 						],
 						"settings":
@@ -1379,94 +1293,37 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
-					"file": "Source/Kick/Kick.Build.cs",
+					"buffer": 3,
+					"file": "/Users/Douglas/Library/Application Support/Sublime Text 3/Packages/User/SublimeLinter.sublime-settings",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 341,
+						"buffer_size": 1955,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								338,
-								338
+								476,
+								476
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/C#/C#.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 6,
-					"file": "Source/Kick/State.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 646,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								142,
-								142
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 4,
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "Source/Kick/Kick.h",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 114,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								113,
-								113
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/C++/C++.tmLanguage",
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 7,
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -2065,7 +1922,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 232.0,
+	"side_bar_width": 291.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{
