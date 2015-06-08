@@ -1,12 +1,12 @@
-.DS_Store
+*.DS_Store
 *.xcodeproj
 *.sdf
 *.sln
 *.rc
 *.suo
 *.opensdf
+*.sublime-workspace
 Build/Receipts
 Intermediate
 Saved
 Binaries
-
