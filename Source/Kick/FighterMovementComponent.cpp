@@ -10,6 +10,8 @@ UFighterMovementComponent::UFighterMovementComponent(const FObjectInitializer& O
     bAutoRegisterUpdatedComponent = true;
     bPositionCorrected = false;
     bGrounded = false;
+    bHasDestination = false;
+    Destination = FVector::ZeroVector;
     ResetMoveState();
 }
 
@@ -19,6 +21,11 @@ void UFighterMovementComponent::SetVelocity(FVector NewVelocity) {
 
 bool UFighterMovementComponent::IsMovingOnGround() const {
     return bGrounded;
+}
+
+void UFighterMovementComponent::SetDestination(FVector NewDestination) {
+	Destination = NewDestination;
+    bHasDestination = true;
 }
 
 void UFighterMovementComponent::AddImpulse(FVector AddedImpulse) {
@@ -32,15 +39,19 @@ void UFighterMovementComponent::TickComponent(float DeltaTime, enum ELevelTick T
         return;
     }
     
-    float BottomZLocation = UpdatedComponent->GetComponentLocation().Z - Cast<UBoxComponent>(UpdatedComponent)->GetUnscaledBoxExtent().Z;
-    if (BottomZLocation >= MIN_FLOOR_DIST) {
+    // Location fixed to be at the bottom of the collision component.
+    FVector Offset = FVector(0.0f, 0.0f, Cast<UBoxComponent>(UpdatedComponent)->GetUnscaledBoxExtent().Z);
+    FVector Location = UpdatedComponent->GetComponentLocation() - Offset;
+
+    // Figuring if the fighter is grounded.
+    if (Location.Z >= MIN_FLOOR_DIST) {
         if (bGrounded) {
             Cast<ABaseFighter>(PawnOwner)->Jumped();
         }
         bGrounded = false;
     } 
 
-    else if (BottomZLocation < MIN_FLOOR_DIST) {
+    else if (Location.Z < MIN_FLOOR_DIST) {
         if (!bGrounded) {
             Cast<ABaseFighter>(PawnOwner)->Landed();
         }
@@ -49,12 +60,25 @@ void UFighterMovementComponent::TickComponent(float DeltaTime, enum ELevelTick T
 
     const AController* Controller = PawnOwner->GetController();
     if (Controller && Controller->IsLocalController()) {
-
-        // Applying forces to velocity.
         if (Controller->IsLocalPlayerController()) {
-            Velocity += GetPendingInputVector();
-            Velocity.Z += GetGravityZ() * 0.05;
-            ConsumeInputVector();
+            
+            // Calculating velocity to destination.
+            if (bHasDestination) {
+                FVector Travel = Destination - Location;
+                if (!Travel.IsNearlyZero(2.0f)) {
+                    Velocity.Y = Travel.GetSafeNormal().Y * 1000.0f;
+                } else {
+                    Velocity.Y = 0.0f;
+                    bHasDestination = false;
+                    Location.Y = Destination.Y;
+                    GetOwner()->SetActorLocation(Location, true);
+                }
+            }
+
+			// Applying forces to velocity.
+			Velocity += GetPendingInputVector();
+			Velocity.Z += GetGravityZ() * 0.05f;
+			ConsumeInputVector();
         }
 
         LimitWorldBounds();
@@ -64,7 +88,6 @@ void UFighterMovementComponent::TickComponent(float DeltaTime, enum ELevelTick T
         FVector Delta = Velocity * DeltaTime;
 
         if (!Delta.IsNearlyZero(1e-6f)) {
-            const FVector OldLocation = UpdatedComponent->GetComponentLocation();
             const FRotator Rotation = UpdatedComponent->GetComponentRotation();
 
             FHitResult Hit(1.f);
@@ -79,25 +102,21 @@ void UFighterMovementComponent::TickComponent(float DeltaTime, enum ELevelTick T
         // Finalizing.
         UpdateComponentVelocity();
     }
-};
+}
 
-bool UFighterMovementComponent::ResolvePenetrationImpl(const FVector& Adjustment, const FHitResult& Hit, const FQuat& NewRotationQuat)
-{
+bool UFighterMovementComponent::ResolvePenetrationImpl(const FVector& Adjustment, const FHitResult& Hit, const FQuat& NewRotationQuat) {
     bPositionCorrected |= Super::ResolvePenetrationImpl(Adjustment, Hit, NewRotationQuat);
     return bPositionCorrected;
 }
 
-bool UFighterMovementComponent::LimitWorldBounds()
-{
+bool UFighterMovementComponent::LimitWorldBounds() {
     AWorldSettings* WorldSettings = PawnOwner ? PawnOwner->GetWorldSettings() : NULL;
-    if (!WorldSettings || !WorldSettings->bEnableWorldBoundsChecks || !UpdatedComponent)
-    {
+    if (!WorldSettings || !WorldSettings->bEnableWorldBoundsChecks || !UpdatedComponent) {
         return false;
     }
     
     const FVector CurrentLocation = UpdatedComponent->GetComponentLocation();
-    if ( CurrentLocation.Z < WorldSettings->KillZ )
-    {
+    if ( CurrentLocation.Z < WorldSettings->KillZ ) {
         Velocity.Z = FMath::Min(GetMaxSpeed(), WorldSettings->KillZ - CurrentLocation.Z + 2.0f);
         return true;
     }
