@@ -34,8 +34,9 @@ void UFighterMovementComponent::AddImpulse(FVector AddedImpulse) {
 
 void UFighterMovementComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) {
     Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
-
+    
     if (!PawnOwner || !UpdatedComponent || ShouldSkipUpdate(DeltaTime)) {
+        UE_LOG(LogTemp, Warning, TEXT("%s"), *PawnOwner->GetName());
         return;
     }
     
@@ -57,51 +58,45 @@ void UFighterMovementComponent::TickComponent(float DeltaTime, enum ELevelTick T
         }
         bGrounded = true;
     }
-
-    const AController* Controller = PawnOwner->GetController();
-    if (Controller && Controller->IsLocalController()) {
-        if (Controller->IsLocalPlayerController()) {
-            
-            // Calculating velocity to destination.
-            if (bHasDestination) {
-                FVector Travel = Destination - Location;
-                if (!Travel.IsNearlyZero(2.0f)) {
-                    Velocity.Y = Travel.GetSafeNormal().Y * 1000.0f;
-                } else {
-                    Velocity.Y = 0.0f;
-                    bHasDestination = false;
-                    Location.Y = Destination.Y;
-                    GetOwner()->SetActorLocation(Location, true);
-                }
-            }
-
-			// Applying forces to velocity.
-			Velocity += GetPendingInputVector();
-			Velocity.Z += GetGravityZ() * 0.05f;
-			ConsumeInputVector();
+    
+    // Calculating velocity to destination.
+    if (bHasDestination) {
+        FVector Travel = Destination - Location;
+        if (!Travel.IsNearlyZero(2.0f)) {
+            Velocity.Y = Travel.GetSafeNormal().Y * 1000.0f;
+        } else {
+            Velocity.Y = 0.0f;
+            bHasDestination = false;
+            Location.Y = Destination.Y;
+            GetOwner()->SetActorLocation(Location, true);
         }
-
-        LimitWorldBounds();
-        bPositionCorrected = false;
-
-        // Getting the delta velocity.
-        FVector Delta = Velocity * DeltaTime;
-
-        if (!Delta.IsNearlyZero(1e-6f)) {
-            const FRotator Rotation = UpdatedComponent->GetComponentRotation();
-
-            FHitResult Hit(1.f);
-            SafeMoveUpdatedComponent(Delta, Rotation, true, Hit);
-
-            if (Hit.IsValidBlockingHit()) {
-                HandleImpact(Hit, DeltaTime, Delta);
-                SlideAlongSurface(Delta, 1.f-Hit.Time, Hit.Normal, Hit, true);
-            }
-        }
-        
-        // Finalizing.
-        UpdateComponentVelocity();
     }
+
+    // Applying forces to velocity.
+    Velocity += GetPendingInputVector();
+    Velocity.Z += GetGravityZ() * 3.0f * DeltaTime;
+    ConsumeInputVector();
+
+    LimitWorldBounds();
+    bPositionCorrected = false;
+
+    // Getting the delta velocity.
+    FVector Delta = Velocity * DeltaTime;
+
+    if (!Delta.IsNearlyZero(1e-6f)) {
+        const FRotator Rotation = UpdatedComponent->GetComponentRotation();
+
+        FHitResult Hit(1.f);
+        SafeMoveUpdatedComponent(Delta, Rotation, true, Hit);
+
+        if (Hit.IsValidBlockingHit()) {
+            HandleImpact(Hit, DeltaTime, Delta);
+            SlideAlongSurface(Delta, 1.f-Hit.Time, Hit.Normal, Hit, true);
+        }
+    }
+    
+    // Finalizing.
+    UpdateComponentVelocity();
 }
 
 bool UFighterMovementComponent::ResolvePenetrationImpl(const FVector& Adjustment, const FHitResult& Hit, const FQuat& NewRotationQuat) {
