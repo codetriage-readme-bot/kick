@@ -17,13 +17,16 @@ class KICK_API UFighterMovementComponent : public UPawnMovementComponent {
    // Public methods.
     UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
     virtual void SetVelocity(FVector NewVelocity);
+    
+    UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
+    virtual void SetFrozen(bool NewFrozen);
 
     UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
     virtual void AddImpulse(FVector AddedImpulse);
 
     UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
     virtual void SetDestination(FVector NewDestination);
-
+    
     // Public properties.
     static const float MIN_FLOOR_DIST;
 
@@ -41,10 +44,16 @@ protected:
 
     UPROPERTY(Transient)
     uint32 bGrounded:1;
+    
+    UPROPERTY(Transient)
+    uint32 bFrozen:1;
 
     UPROPERTY(Transient)
     uint32 bHasDestination:1;
     
     UPROPERTY()
     FVector Destination;
+    
+    UPROPERTY()
+    FVector Cruise;
 };

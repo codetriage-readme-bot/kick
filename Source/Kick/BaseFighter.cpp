@@ -9,8 +9,11 @@ FName ABaseFighter::CollisionComponentName(TEXT("CollisionComponent0"));
 FName ABaseFighter::MeshComponentName(TEXT("MeshComponent0"));
 
 ABaseFighter::ABaseFighter(const FObjectInitializer& ObjectInitializer) {
+    
+    // Initializing class variables.
     PrimaryActorTick.bCanEverTick = true;
     bCollideWhenPlacing = false;
+    JiggleDuration = 0.0f;
 
     CollisionComponent = ObjectInitializer.CreateDefaultSubobject<UBoxComponent>(this, ABaseFighter::CollisionComponentName);
     CollisionComponent->SetCollisionProfileName(TEXT("Pawn"));
@@ -39,6 +42,22 @@ ABaseFighter::ABaseFighter(const FObjectInitializer& ObjectInitializer) {
     }
 }
 
+void ABaseFighter::Tick(float DeltaSeconds) {
+    Super::Tick(DeltaSeconds);
+    
+    // Handling jiggle of the mesh component.
+    FVector Location = MeshComponent->GetRelativeTransform().GetLocation();
+    if (JiggleDuration > 0.0f) {
+        JiggleDuration -= DeltaSeconds;
+        float Switch = (sin(GetWorld()->TimeSeconds * 60.0f) + 1.0f) * 0.5f;
+        float Sign = FGenericPlatformMath::RoundToFloat(Switch) > 0 ? 1.0f : -1.0f;
+        MeshComponent->SetRelativeLocation(FVector(2.5f * Sign, Location.Y, Location.Z));
+    } else {
+        JiggleDuration = 0.0f;
+        MeshComponent->SetRelativeLocation(FVector(0.0f, Location.Y, Location.Z));
+    }
+}
+
 void ABaseFighter::PostInitializeComponents()
 {
     Super::PostInitializeComponents();
@@ -64,6 +83,10 @@ USkeletalMeshComponent* ABaseFighter::GetMeshComponent() const {
 UPawnMovementComponent* ABaseFighter::GetMovementComponent() const
 {
     return MovementComponent;
+}
+
+void ABaseFighter::Jiggle(float Duration) {
+    JiggleDuration = Duration;
 }
 
 

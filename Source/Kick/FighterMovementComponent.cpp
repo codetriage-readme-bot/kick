@@ -10,13 +10,20 @@ UFighterMovementComponent::UFighterMovementComponent(const FObjectInitializer& O
     bAutoRegisterUpdatedComponent = true;
     bPositionCorrected = false;
     bGrounded = false;
+    bFrozen = false;
     bHasDestination = false;
+    Cruise = FVector::ZeroVector;
     Destination = FVector::ZeroVector;
     ResetMoveState();
 }
 
 void UFighterMovementComponent::SetVelocity(FVector NewVelocity) {
+    Cruise = NewVelocity;
     Velocity = NewVelocity;
+}
+
+void UFighterMovementComponent::SetFrozen(bool NewFrozen) {
+    bFrozen = NewFrozen;
 }
 
 bool UFighterMovementComponent::IsMovingOnGround() const {
@@ -35,8 +42,8 @@ void UFighterMovementComponent::AddImpulse(FVector AddedImpulse) {
 void UFighterMovementComponent::TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) {
     Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
     
-    if (!PawnOwner || !UpdatedComponent || ShouldSkipUpdate(DeltaTime)) {
-        UE_LOG(LogTemp, Warning, TEXT("%s"), *PawnOwner->GetName());
+    // If frozen we stop processing movement.
+    if (!PawnOwner || !UpdatedComponent || ShouldSkipUpdate(DeltaTime) || bFrozen) {
         return;
     }
     
@@ -72,10 +79,15 @@ void UFighterMovementComponent::TickComponent(float DeltaTime, enum ELevelTick T
         }
     }
 
-    // Applying forces to velocity.
+    // Applying impulsions.
     Velocity += GetPendingInputVector();
-    Velocity.Z += GetGravityZ() * 3.0f * DeltaTime;
     ConsumeInputVector();
+    
+    // Applying fake friction.
+    Velocity.X = Velocity.X > 0.0f ? FGenericPlatformMath::Max(Velocity.X * (1 - DeltaTime * 10.0f), Cruise.X): FGenericPlatformMath::Min(Velocity.X * (1 - DeltaTime * 10.0f), Cruise.X);
+    
+    // Applying gravity.
+    Velocity.Z += GetGravityZ() * 3.0f * DeltaTime;
 
     LimitWorldBounds();
     bPositionCorrected = false;

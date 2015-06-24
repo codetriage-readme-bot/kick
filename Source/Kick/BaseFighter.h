@@ -30,6 +30,11 @@ private_subobject:
 private:
     UPROPERTY(Category = Pawn, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
     UFighterMovementComponent* MovementComponent;
+
+protected:
+    
+    // Protected variables.
+    float JiggleDuration;
     
 public:
 	ABaseFighter();
@@ -41,9 +46,12 @@ public:
     // Public overrides.
     virtual void PostInitializeComponents() override;
     virtual UPawnMovementComponent* GetMovementComponent() const override;
-    UBoxComponent* GetCollisionComponent() const;
+    virtual void Tick(float DeltaSeconds) override;
     
     // Public new methods.
+    UBoxComponent* GetCollisionComponent() const;
 	USkeletalMeshComponent* GetMeshComponent() const;
     
+    UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
+    virtual void Jiggle(float Duration);
 };
