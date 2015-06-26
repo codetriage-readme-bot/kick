@@ -12,5 +12,12 @@
 				"Engine"
 			]
 		}
+	],
+	"TargetPlatforms": [
+		"PS4",
+		"WindowsNoEditor",
+		"XboxOne",
+		"MacNoEditor",
+		"LinuxNoEditor"
 	]
 }
