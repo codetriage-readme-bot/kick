@@ -13,6 +13,7 @@ UFighterMovementComponent::UFighterMovementComponent(const FObjectInitializer& O
     bFrozen = false;
     bHasDestination = false;
     Cruise = FVector::ZeroVector;
+    Friction = 10.0f;
     Destination = FVector::ZeroVector;
     ResetMoveState();
 }
@@ -25,6 +26,11 @@ void UFighterMovementComponent::SetVelocity(FVector NewVelocity) {
 void UFighterMovementComponent::SetFrozen(bool NewFrozen) {
     bFrozen = NewFrozen;
 }
+
+void UFighterMovementComponent::SetFriction(float NewFriction) {
+    Friction = NewFriction;
+}
+
 
 bool UFighterMovementComponent::IsMovingOnGround() const {
     return bGrounded;
@@ -84,7 +90,7 @@ void UFighterMovementComponent::TickComponent(float DeltaTime, enum ELevelTick T
     ConsumeInputVector();
     
     // Applying fake friction.
-    Velocity.X = Velocity.X > 0.0f ? FGenericPlatformMath::Max(Velocity.X * (1 - DeltaTime * 10.0f), Cruise.X): FGenericPlatformMath::Min(Velocity.X * (1 - DeltaTime * 10.0f), Cruise.X);
+    Velocity.X = Velocity.X > 0.0f ? FGenericPlatformMath::Max(Velocity.X * (1 - DeltaTime * Friction), Cruise.X): FGenericPlatformMath::Min(Velocity.X * (1 - DeltaTime * Friction), Cruise.X);
     
     // Applying gravity.
     Velocity.Z += GetGravityZ() * 3.0f * DeltaTime;

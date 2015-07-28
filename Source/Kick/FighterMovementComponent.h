@@ -20,6 +20,10 @@ class KICK_API UFighterMovementComponent : public UPawnMovementComponent {
     
     UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
     virtual void SetFrozen(bool NewFrozen);
+    
+    // Public methods.
+    UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
+    virtual void SetFriction(float NewFriction);
 
     UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
     virtual void AddImpulse(FVector AddedImpulse);
@@ -56,4 +60,7 @@ protected:
     
     UPROPERTY()
     FVector Cruise;
+    
+    UPROPERTY()
+    float Friction;
 };
