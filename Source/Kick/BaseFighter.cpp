@@ -3,6 +3,7 @@
 #include "Kick.h"
 #include "BaseFighter.h"
 #include "FighterMovementComponent.h"
+#include "CustomSkeletalMeshComponent.h"
 
 FName ABaseFighter::MovementComponentName(TEXT("MovementComponent0"));
 FName ABaseFighter::CollisionComponentName(TEXT("CollisionComponent0"));
@@ -27,7 +28,7 @@ ABaseFighter::ABaseFighter(const FObjectInitializer& ObjectInitializer) {
     MovementComponent = ObjectInitializer.CreateDefaultSubobject<UFighterMovementComponent>(this, ABaseFighter::MovementComponentName);
     MovementComponent->UpdatedComponent = CollisionComponent;
     
-    MeshComponent = ObjectInitializer.CreateOptionalDefaultSubobject<USkeletalMeshComponent>(this, ABaseFighter::MeshComponentName);
+    MeshComponent = ObjectInitializer.CreateOptionalDefaultSubobject<UCustomSkeletalMeshComponent>(this, ABaseFighter::MeshComponentName);
     if (MeshComponent) {
         MeshComponent->AlwaysLoadOnClient = true;
         MeshComponent->AlwaysLoadOnServer = true;
@@ -76,7 +77,7 @@ UBoxComponent* ABaseFighter::GetCollisionComponent() const {
     return CollisionComponent;
 }
 
-USkeletalMeshComponent* ABaseFighter::GetMeshComponent() const {
+UCustomSkeletalMeshComponent* ABaseFighter::GetMeshComponent() const {
     return MeshComponent;
 }
 

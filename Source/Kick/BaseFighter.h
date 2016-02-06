@@ -6,7 +6,7 @@
 #include "BaseFighter.generated.h"
 
 class UBoxComponent;
-class USkeletalMeshComponent;
+class UCustomSkeletalMeshComponent;
 class UFighterMovementComponent;
 
 UCLASS(config=Game, Blueprintable, BlueprintType)
@@ -14,10 +14,10 @@ class KICK_API ABaseFighter : public APawn {
 	GENERATED_UCLASS_BODY()
 
     // Public events.
-    UFUNCTION(BlueprintImplementableEvent, Category = "Pawn|Fighter")
+    UFUNCTION(BlueprintImplementableEvent, Category="Pawn|Fighter")
     void Landed();
     
-    UFUNCTION(BlueprintImplementableEvent, Category = "Pawn|Fighter")
+    UFUNCTION(BlueprintImplementableEvent, Category="Pawn|Fighter")
     void Jumped();
     
 private_subobject:
@@ -25,7 +25,7 @@ private_subobject:
 	UBoxComponent* CollisionComponent;
 
 	UPROPERTY(Category = Pawn, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-	USkeletalMeshComponent* MeshComponent;
+	UCustomSkeletalMeshComponent* MeshComponent;
 
 private:
     UPROPERTY(Category = Pawn, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
@@ -50,7 +50,7 @@ public:
     
     // Public new methods.
     UBoxComponent* GetCollisionComponent() const;
-	USkeletalMeshComponent* GetMeshComponent() const;
+	UCustomSkeletalMeshComponent* GetMeshComponent() const;
     
     UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
     virtual void Jiggle(float Duration);

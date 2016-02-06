@@ -4,7 +4,10 @@
 *.sln
 *.rc
 *.suo
+*.log
 *.opensdf
+*.xcworkspacedata
+*.xcsettings
 *.sublime-workspace
 Build/Receipts
 Intermediate
