@@ -20,7 +20,7 @@ class KICK_API UFighterMovementComponent : public UPawnMovementComponent {
     
     UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
     virtual void SetFrozen(bool NewFrozen);
-    
+
     // Public methods.
     UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
     virtual void SetFriction(float NewFriction);
@@ -45,13 +45,10 @@ protected:
     // Protected properties.
     UPROPERTY(Transient)
     uint32 bPositionCorrected:1;
-
-    UPROPERTY(Transient)
-    uint32 bGrounded:1;
     
     UPROPERTY(Transient)
     uint32 bFrozen:1;
-
+    
     UPROPERTY(Transient)
     uint32 bHasDestination:1;
     

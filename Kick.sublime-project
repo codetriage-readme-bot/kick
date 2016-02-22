@@ -6,11 +6,11 @@
 		},
 		{
 			"name": "Headers",
-			"path": "/Users/Shared/UnrealEngine/4.9/Engine/Source/Runtime/Engine/Classes"
+			"path": "/Users/Shared/UnrealEngine/4.10/Engine/Source/Runtime/Engine/Classes"
 		},
 		{
 			"name": "Implementations",
-			"path": "/Users/Shared/UnrealEngine/4.9/Engine/Source/Runtime/Engine/Private"
+			"path": "/Users/Shared/UnrealEngine/4.10/Engine/Source/Runtime/Engine/Private"
 		}
 	]
 }

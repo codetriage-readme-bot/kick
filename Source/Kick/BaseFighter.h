@@ -12,13 +12,6 @@ class UFighterMovementComponent;
 UCLASS(config=Game, Blueprintable, BlueprintType)
 class KICK_API ABaseFighter : public APawn {
 	GENERATED_UCLASS_BODY()
-
-    // Public events.
-    UFUNCTION(BlueprintImplementableEvent, Category="Pawn|Fighter")
-    void Landed();
-    
-    UFUNCTION(BlueprintImplementableEvent, Category="Pawn|Fighter")
-    void Jumped();
     
 private_subobject:
 	UPROPERTY(Category = Pawn, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))

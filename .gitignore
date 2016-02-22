@@ -6,6 +6,7 @@
 *.suo
 *.log
 *.opensdf
+*.xcuserstate
 *.xcworkspacedata
 *.xcsettings
 *.sublime-workspace
