@@ -3,26 +3,26 @@
 #pragma once
 
 #include "Components/SkeletalMeshComponent.h"
-#include "CustomSkeletalMeshComponent.generated.h"
+#include "FighterSkeletalMeshComponent.generated.h"
 
 /**
  * 
  */
 UCLASS()
-class KICK_API UCustomSkeletalMeshComponent : public USkeletalMeshComponent
+class KICK_API UFighterSkeletalMeshComponent : public USkeletalMeshComponent
 {
 	GENERATED_UCLASS_BODY()
 
 protected:
     
-    float LastAnimationUpdate;
+    float LastPoseUpdate;
     
 public:
     
     UPROPERTY(BlueprintReadWrite, EditAnywhere, Category="Animation")
-    float AnimationUpdateFrequency;
+    float PoseUpdateFrequency;
     
-//    void TickAnimation(float DeltaTime);
+//  virtual void TickAnimation(float DeltaTime);
     virtual void TickPose(float DeltaTime, bool bNeedsValidRootMotion) override;
 	
 };

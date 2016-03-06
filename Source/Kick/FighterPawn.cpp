@@ -1,22 +1,23 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Kick.h"
-#include "BaseFighter.h"
+#include "FighterPawn.h"
 #include "FighterMovementComponent.h"
-#include "CustomSkeletalMeshComponent.h"
+#include "FighterSkeletalMeshComponent.h"
 
-FName ABaseFighter::MovementComponentName(TEXT("MovementComponent0"));
-FName ABaseFighter::CollisionComponentName(TEXT("CollisionComponent0"));
-FName ABaseFighter::MeshComponentName(TEXT("MeshComponent0"));
+FName AFighterPawn::MovementComponentName(TEXT("MovementComponent0"));
+FName AFighterPawn::CollisionComponentName(TEXT("CollisionComponent0"));
+FName AFighterPawn::MeshComponentName(TEXT("MeshComponent0"));
 
-ABaseFighter::ABaseFighter(const FObjectInitializer& ObjectInitializer) {
+AFighterPawn::AFighterPawn(const FObjectInitializer& ObjectInitializer) {
     
     // Initializing class variables.
+    Grounded = false;
     PrimaryActorTick.bCanEverTick = true;
     bCollideWhenPlacing = false;
     JiggleDuration = 0.0f;
 
-    CollisionComponent = ObjectInitializer.CreateDefaultSubobject<UBoxComponent>(this, ABaseFighter::CollisionComponentName);
+    CollisionComponent = ObjectInitializer.CreateDefaultSubobject<UBoxComponent>(this, AFighterPawn::CollisionComponentName);
     CollisionComponent->SetCollisionProfileName(TEXT("Pawn"));
     CollisionComponent->CanCharacterStepUpOn = ECB_No;
     CollisionComponent->bShouldUpdatePhysicsVolume = true;
@@ -25,10 +26,10 @@ ABaseFighter::ABaseFighter(const FObjectInitializer& ObjectInitializer) {
     // Setting the collision component to be the root component.
     RootComponent = CollisionComponent;
     
-    MovementComponent = ObjectInitializer.CreateDefaultSubobject<UFighterMovementComponent>(this, ABaseFighter::MovementComponentName);
+    MovementComponent = ObjectInitializer.CreateDefaultSubobject<UFighterMovementComponent>(this, AFighterPawn::MovementComponentName);
     MovementComponent->UpdatedComponent = CollisionComponent;
     
-    MeshComponent = ObjectInitializer.CreateOptionalDefaultSubobject<UCustomSkeletalMeshComponent>(this, ABaseFighter::MeshComponentName);
+    MeshComponent = ObjectInitializer.CreateOptionalDefaultSubobject<UFighterSkeletalMeshComponent>(this, AFighterPawn::MeshComponentName);
     if (MeshComponent) {
         MeshComponent->AlwaysLoadOnClient = true;
         MeshComponent->AlwaysLoadOnServer = true;
@@ -43,8 +44,14 @@ ABaseFighter::ABaseFighter(const FObjectInitializer& ObjectInitializer) {
     }
 }
 
-void ABaseFighter::Tick(float DeltaSeconds) {
+void AFighterPawn::Tick(float DeltaSeconds) {
     Super::Tick(DeltaSeconds);
+    
+    // Emit the landing event.
+    if (MovementComponent->Grounded & (MovementComponent->Grounded != Grounded)) {
+        Landed();
+    }
+    Grounded = MovementComponent->Grounded;
     
     // Handling jiggle of the mesh component.
     FVector Location = MeshComponent->GetRelativeTransform().GetLocation();
@@ -59,7 +66,7 @@ void ABaseFighter::Tick(float DeltaSeconds) {
     }
 }
 
-void ABaseFighter::PostInitializeComponents()
+void AFighterPawn::PostInitializeComponents()
 {
     Super::PostInitializeComponents();
     
@@ -73,20 +80,7 @@ void ABaseFighter::PostInitializeComponents()
     }
 }
 
-UBoxComponent* ABaseFighter::GetCollisionComponent() const {
-    return CollisionComponent;
-}
-
-UCustomSkeletalMeshComponent* ABaseFighter::GetMeshComponent() const {
-    return MeshComponent;
-}
-
-UPawnMovementComponent* ABaseFighter::GetMovementComponent() const
-{
-    return MovementComponent;
-}
-
-void ABaseFighter::Jiggle(float Duration) {
+void AFighterPawn::Jiggle(float Duration) {
     JiggleDuration = Duration;
 }
 

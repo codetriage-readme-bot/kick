@@ -2,62 +2,60 @@
 
 #pragma once
 
-#include "GameFramework/PawnMovementComponent.h"
+#include "GameFramework/MovementComponent.h"
 #include "FighterMovementComponent.generated.h"
 
-UCLASS(meta = (BlueprintSpawnableComponent))
-class KICK_API UFighterMovementComponent : public UPawnMovementComponent {
+class AFighterPawn;
+
+UCLASS(ClassGroup=(Custom), meta=(BlueprintSpawnableComponent))
+class KICK_API UFighterMovementComponent : public UMovementComponent
+{
+    GENERATED_UCLASS_BODY()
     
-	GENERATED_UCLASS_BODY()
+    UPROPERTY(BlueprintReadWrite, Category="Pawn|Fighter")
+    float Drag;
+
+    UPROPERTY(BlueprintReadWrite, Category="Pawn|Fighter")
+    float GravityInfluence;
     
-    // Public overrides.
+    UPROPERTY(BlueprintReadOnly, Category="Pawn|Fighter")
+    bool Grounded;
+    
+    UPROPERTY(BlueprintReadWrite, Category="Pawn|Fighter")
+    float TargetDepth;
+    
+    UPROPERTY(BlueprintReadWrite, Category="Pawn|Fighter")
+    bool Frozen;
+    
+    UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
+    virtual void AddImpulse(FVector NewImpulse);
+    
+    UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
+    virtual void SetSpeed(float NewSpeed);
+    
     virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
-    virtual bool IsMovingOnGround() const override;
-
-   // Public methods.
-    UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
-    virtual void SetVelocity(FVector NewVelocity);
     
-    UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
-    virtual void SetFrozen(bool NewFrozen);
-
-    // Public methods.
-    UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
-    virtual void SetFriction(float NewFriction);
-
-    UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
-    virtual void AddImpulse(FVector AddedImpulse);
-
-    UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
-    virtual void SetDestination(FVector NewDestination);
-    
-    // Public properties.
-    static const float MIN_FLOOR_DIST;
-
 protected:
+    
+    UPROPERTY()
+    uint32 Recursions;
+    
+    UPROPERTY()
+    float Speed;
 
-    // Protected overrides.
-    virtual bool ResolvePenetrationImpl(const FVector& Adjustment, const FHitResult& Hit, const FQuat& NewRotation) override;
-    
-    // Protected methods.
-    virtual bool LimitWorldBounds();
-
-    // Protected properties.
-    UPROPERTY(Transient)
-    uint32 bPositionCorrected:1;
-    
-    UPROPERTY(Transient)
-    uint32 bFrozen:1;
-    
-    UPROPERTY(Transient)
-    uint32 bHasDestination:1;
-    
     UPROPERTY()
-    FVector Destination;
+    FVector Impulse;
     
-    UPROPERTY()
-    FVector Cruise;
+    UFUNCTION()
+    void Move(FVector Delta);
     
-    UPROPERTY()
-    float Friction;
+    UFUNCTION()
+    virtual void UpdateVelocity(float DeltaTime);
+    
+    UFUNCTION()
+    virtual bool IsAbove(UBoxComponent* OtherComponent);
+    
+    UFUNCTION()
+    virtual float GetHorizontalOverlap(UBoxComponent* OtherComponent);
+    
 };

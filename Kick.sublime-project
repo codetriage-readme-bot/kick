@@ -5,6 +5,9 @@
 			"path": "Source/Kick"
 		},
 		{
+			"path": "Config"
+		},
+		{
 			"name": "Headers",
 			"path": "/Users/Shared/UnrealEngine/4.10/Engine/Source/Runtime/Engine/Classes"
 		},
