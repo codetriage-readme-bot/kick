@@ -5,6 +5,7 @@
 #include "GameFramework/Pawn.h"
 #include "FighterPawn.generated.h"
 
+class UAnimMontage;
 class UBoxComponent;
 class UFighterSkeletalMeshComponent;
 class UFighterMovementComponent;
@@ -30,11 +31,23 @@ class KICK_API AFighterPawn : public APawn {
     
     UPROPERTY(BlueprintReadOnly, Category="Pawn|Fighter")
     bool Grounded;
-    
+
+    UPROPERTY()
+    UAnimMontage* AnimMontage;
+
     virtual void PostInitializeComponents() override;
     
     virtual void Tick(float DeltaSeconds) override;
-    
+
+    UFUNCTION(BlueprintCallable, Category=Animation)
+    virtual float PlayAnimMontage(class UAnimMontage* AnimMontage, float InPlayRate = 1.f, FName StartSectionName = NAME_None);
+
+    UFUNCTION(BlueprintCallable, Category=Animation)
+    virtual void StopAnimMontage(class UAnimMontage* AnimMontage = NULL);
+
+    UFUNCTION(BlueprintCallable, Category=Animation)
+    class UAnimMontage * GetCurrentMontage();
+
     UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
     virtual void Jiggle(float Duration);
 
@@ -44,8 +57,5 @@ class KICK_API AFighterPawn : public APawn {
 protected:
     
     float JiggleDuration;
-    
-public:
-    
 
 };

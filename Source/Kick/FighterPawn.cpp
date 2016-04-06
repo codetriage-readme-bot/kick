@@ -84,4 +84,49 @@ void AFighterPawn::Jiggle(float Duration) {
     JiggleDuration = Duration;
 }
 
+float AFighterPawn::PlayAnimMontage(class UAnimMontage* AnimMontage, float InPlayRate, FName StartSectionName)
+{
+    UAnimInstance * AnimInstance = (MeshComponent)? MeshComponent->GetAnimInstance() : NULL; 
+    if( AnimMontage && AnimInstance )
+    {
+        float const Duration = AnimInstance->Montage_Play(AnimMontage, InPlayRate);
+
+        if (Duration > 0.f)
+        {
+            // Start at a given Section.
+            if( StartSectionName != NAME_None )
+            {
+                AnimInstance->Montage_JumpToSection(StartSectionName, AnimMontage);
+            }
+
+            return Duration;
+        }
+    }   
+
+    return 0.f;
+}
+
+void AFighterPawn::StopAnimMontage(class UAnimMontage* AnimMontage)
+{
+    UAnimInstance * AnimInstance = (MeshComponent)? MeshComponent->GetAnimInstance() : NULL; 
+    UAnimMontage * MontageToStop = (AnimMontage)? AnimMontage : GetCurrentMontage();
+    bool bShouldStopMontage =  AnimInstance && MontageToStop && !AnimInstance->Montage_GetIsStopped(MontageToStop);
+
+    if ( bShouldStopMontage )
+    {
+        AnimInstance->Montage_Stop(MontageToStop->BlendOutTime, MontageToStop);
+    }
+}
+
+class UAnimMontage * AFighterPawn::GetCurrentMontage()
+{
+    UAnimInstance * AnimInstance = (MeshComponent)? MeshComponent->GetAnimInstance() : NULL; 
+    if ( AnimInstance )
+    {
+        return AnimInstance->GetCurrentActiveMontage();
+    }
+
+    return NULL;
+}
+
 
