@@ -8,9 +8,12 @@
 *.opensdf
 *.xcuserstate
 *.xcworkspacedata
+*.xcworkspace
 *.xcsettings
 *.sublime-workspace
+*.xcbkptlist
 Build/Receipts
 Intermediate
 Saved
 Binaries
+
