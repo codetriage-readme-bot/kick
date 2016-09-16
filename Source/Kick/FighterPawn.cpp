@@ -35,7 +35,7 @@ AFighterPawn::AFighterPawn(const FObjectInitializer& ObjectInitializer) {
         MeshComponent->AlwaysLoadOnServer = true;
         MeshComponent->bOwnerNoSee = false;
         MeshComponent->PrimaryComponentTick.TickGroup = TG_PrePhysics;
-        MeshComponent->AttachParent = RootComponent;
+		MeshComponent->SetupAttachment(RootComponent);
         MeshComponent->bGenerateOverlapEvents = false;
         // MeshComponent->bCanEverAffectNavigation = false;
         MeshComponent->MeshComponentUpdateFlag = EMeshComponentUpdateFlag::AlwaysTickPose;

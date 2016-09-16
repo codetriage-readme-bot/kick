@@ -12,6 +12,7 @@
 *.xcsettings
 *.sublime-workspace
 *.xcbkptlist
+*.opendb
 Build/Receipts
 Intermediate
 Saved

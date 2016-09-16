@@ -9,11 +9,11 @@
 		},
 		{
 			"name": "Headers",
-			"path": "/Users/Shared/UnrealEngine/4.11/Engine/Source/Runtime/Engine/Classes"
+			"path": "C:/Program Files/Epic Games/4.13/Engine/Source/Runtime/Engine/Classes"
 		},
 		{
 			"name": "Implementations",
-			"path": "/Users/Shared/UnrealEngine/4.11/Engine/Source/Runtime/Engine/Private"
+			"path": "C:/Program Files/Epic Games/4.13/Engine/Source/Runtime/Engine/Private"
 		}
 	]
 }

@@ -78,7 +78,7 @@ void UFighterMovementComponent::Move(FVector Delta) {
         bool Merging = UpdatedComponent->GetComponentLocation().Y != OtherComponent->GetComponentLocation().Y;
         
         // We will slide against him if we are not grounded or coming from another depth layer.
-        if (!Grounded or Merging) {
+        if (!Grounded || Merging) {
             Delta = FVector::VectorPlaneProject(Delta, Hit.Normal);
             Move(Delta);
             return;
