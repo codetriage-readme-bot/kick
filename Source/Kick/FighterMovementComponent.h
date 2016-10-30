@@ -54,7 +54,10 @@ protected:
     
     UFUNCTION()
     virtual bool IsAbove(UBoxComponent* OtherComponent);
-    
+   
+	UFUNCTION()
+	virtual bool IsFlanking(UBoxComponent* OtherComponent);
+
     UFUNCTION()
     virtual float GetHorizontalOverlap(UBoxComponent* OtherComponent);
     

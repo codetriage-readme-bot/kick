@@ -22,10 +22,10 @@ class KICK_API AFighterPawn : public APawn {
     UPROPERTY(Category = Pawn, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
     UBoxComponent* CollisionComponent;
     
-    UPROPERTY(Category = Pawn, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+    UPROPERTY(Category="Pawn", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
     UFighterSkeletalMeshComponent* MeshComponent;
     
-    UPROPERTY(Category = Pawn, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+    UPROPERTY(Category="Pawn", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
     UFighterMovementComponent* MovementComponent;
     
     UPROPERTY(BlueprintReadOnly, Category="Pawn|Fighter")
@@ -46,6 +46,8 @@ protected:
     float JiggleDuration;
     
 public:
-    
 
+	UPROPERTY(EditDefaultsOnly, Category="Default")
+	TMap<FName, UAnimSequence*> AnimationSet;
+    
 };

@@ -66,19 +66,16 @@ void UFighterMovementComponent::Move(FVector Delta) {
             return;
         }
             
-        // If are hitting from above. We fix the position.
-        if (IsAbove(OtherComponent)) {
+        // If are hitting the opponent from above or from the side. We fix the position.
+        if (IsAbove(OtherComponent) || IsFlanking(OtherComponent)) {
             
             // We fix its location to fall on either side of the other actor.
             Move(FVector(GetHorizontalOverlap(OtherComponent), 0.0f, 0.0f));
             return;
         }
         
-        // Otherwise we are flanking the opponent.
-        bool Merging = UpdatedComponent->GetComponentLocation().Y != OtherComponent->GetComponentLocation().Y;
-        
-        // We will slide against him if we are not grounded or coming from another depth layer.
-        if (!Grounded || Merging) {
+        // Otherwise we are simply flanking the opponent and we will slide against him.
+        if (!Grounded) {
             Delta = FVector::VectorPlaneProject(Delta, Hit.Normal);
             Move(Delta);
             return;
@@ -135,6 +132,22 @@ bool UFighterMovementComponent::IsAbove(UBoxComponent* OtherComponent) {
     float Bottom = UpdatedComponent->GetComponentLocation().Z - ((UBoxComponent*)UpdatedComponent)->GetScaledBoxExtent().Z;
     float OtherTop = OtherComponent->GetComponentLocation().Z + OtherComponent->GetScaledBoxExtent().Z;
     return Bottom >= OtherTop;
+}
+
+bool UFighterMovementComponent::IsFlanking(UBoxComponent* OtherComponent) {
+	float Extent = ((UBoxComponent*)UpdatedComponent)->GetScaledBoxExtent().Y;
+	float OtherExtent = OtherComponent->GetScaledBoxExtent().Y;
+
+	float Depth = UpdatedComponent->GetComponentLocation().Y;
+	float OtherDepth = OtherComponent->GetComponentLocation().Y;
+
+	float Closest = Depth + Extent;
+	float OtherClosest = OtherDepth + OtherExtent;
+	
+	float Furthest = Depth - Extent;
+	float OtherFurthest = OtherDepth - OtherExtent;
+
+	return (Depth != TargetDepth) && ((Closest >= OtherFurthest) || (Furthest <= OtherClosest));
 }
 
 float UFighterMovementComponent::GetHorizontalOverlap(UBoxComponent* OtherComponent) {
