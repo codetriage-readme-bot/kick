@@ -45,9 +45,4 @@ protected:
     
     float JiggleDuration;
     
-public:
-
-	UPROPERTY(EditDefaultsOnly, Category="Default")
-	TMap<FName, UAnimSequence*> AnimationSet;
-    
 };

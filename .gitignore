@@ -2,6 +2,7 @@
 *.xcodeproj
 *.sdf
 *.sln
+*.db
 *.rc
 *.suo
 *.log
