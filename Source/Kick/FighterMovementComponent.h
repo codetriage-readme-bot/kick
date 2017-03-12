@@ -29,7 +29,10 @@ class KICK_API UFighterMovementComponent : public UMovementComponent
     
     UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
     virtual void AddImpulse(FVector NewImpulse);
-    
+
+	UFUNCTION(BlueprintCallable, Category = "Pawn|Fighter")
+	virtual float GetSpeed();
+
     UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
     virtual void SetSpeed(float NewSpeed);
     

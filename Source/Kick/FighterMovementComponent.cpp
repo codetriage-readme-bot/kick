@@ -123,8 +123,12 @@ void UFighterMovementComponent::AddImpulse(FVector NewImpulse) {
     Impulse += NewImpulse;
 }
 
+float UFighterMovementComponent::GetSpeed() {
+	return Speed;
+}
+
 void UFighterMovementComponent::SetSpeed(float NewSpeed) {
-    Speed = NewSpeed;
+    Speed = NewSpeed; 
     Velocity.X = NewSpeed;
 }
 
