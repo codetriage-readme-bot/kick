@@ -6,7 +6,7 @@ public class Kick : ModuleRules
 {
 	public Kick(TargetInfo Target)
 	{
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "MovieScene", "LevelSequence" });
 		PrivateDependencyModuleNames.AddRange(new string[] {  });
 	}
 }

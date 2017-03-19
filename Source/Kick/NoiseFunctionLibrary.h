@@ -6,7 +6,8 @@
 #include "NoiseFunctionLibrary.generated.h"
 
 UCLASS()
-class KICK_API UNoiseFunctionLibrary : public UBlueprintFunctionLibrary {
+class KICK_API UNoiseFunctionLibrary : public UBlueprintFunctionLibrary 
+{
     GENERATED_BODY()
 
  public:

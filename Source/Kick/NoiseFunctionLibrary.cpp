@@ -22,10 +22,11 @@ float UNoiseFunctionLibrary::Lerp(float a, float b, float blend) {
 float UNoiseFunctionLibrary::SimpleNoise(float seconds, float amplitude, float frequency, int32 seed) {
     seconds *= frequency;
 
-    // TODO(Douglas): This is always worth 0 for some reason.
+    // TODO: This is always worth 0 for some reason.
     int32 integer = (int32)seconds;
     float remainder = seconds - integer;
     float ret = Cerp(Random(integer, seed), Random(integer + 1, seed), remainder) * amplitude;
+
     // UE_LOG(LogTemp, Warning, TEXT("Seconds: %f Time: %f"), seconds, integer);
     return ret;
 }
