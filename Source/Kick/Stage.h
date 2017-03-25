@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "FighterPawn.h"
+#include "FighterType.h"
 #include "LevelSequence.h"
 #include "Engine/DataAsset.h"
 #include "Stage.generated.h"
@@ -41,10 +41,10 @@ public:
 	int32 Requirements;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<TSubclassOf<AFighterPawn>> Heroes;
+	TArray<UFighterType*> Heroes;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSet<TSubclassOf<AFighterPawn>> Enemies;
+	TSet<UFighterType*> Enemies;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	USoundCue* Music;

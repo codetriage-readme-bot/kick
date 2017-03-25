@@ -72,6 +72,7 @@ void AFighterPawn::PostInitializeComponents()
     
     if (!IsPendingKill()) {
         if (MeshComponent) {
+
             // Force animation tick after movement component updates.
             if (MeshComponent->PrimaryComponentTick.bCanEverTick && MovementComponent) {
                 MeshComponent->PrimaryComponentTick.AddPrerequisite(MovementComponent, MovementComponent->PrimaryComponentTick);

@@ -134,9 +134,6 @@ class KICK_API UMove : public UDataAsset
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TSubclassOf<AFighterPawn> Fighter;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	EMoveType Type;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -144,9 +141,6 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EMoveType))
 	int32 Disables;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TMap<TSubclassOf<AFighterPawn>, UAnimSequenceBase*> Animations;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool Loop;
