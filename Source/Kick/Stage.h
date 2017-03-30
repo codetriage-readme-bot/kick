@@ -2,23 +2,12 @@
 
 #pragma once
 
+#include "kick.h"
+#include "heroe.h"
 #include "FighterType.h"
 #include "LevelSequence.h"
 #include "Engine/DataAsset.h"
 #include "Stage.generated.h"
-
-
-UENUM(BlueprintType, meta = (Bitflags))
-enum class EDeed : uint8
-{
-	Deed0 UMETA(DisplayName = "Escaped Room"),
-	Deed1 UMETA(DisplayName = "Saved Silver"),
-	Deed2 UMETA(DisplayName = "Changed Costume"),
-	Deed3 UMETA(DisplayName = "Left Ramos Behind"),
-	Deed4 UMETA(DisplayName = "Defeated Jam Azzar")
-};
-
-ENUM_CLASS_FLAGS(EDeed)
 
 
 UCLASS(BlueprintType)
@@ -41,7 +30,7 @@ public:
 	int32 Requirements;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<UFighterType*> Heroes;
+	TArray<UHeroe*> Heroes;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSet<UFighterType*> Enemies;

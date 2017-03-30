@@ -2,6 +2,7 @@
 
 #pragma once
 
+#include "kick.h"
 #include "Move.h"
 #include "Engine/DataAsset.h"
 #include "FighterType.generated.h"
@@ -15,7 +16,13 @@ class KICK_API UFighterType : public UDataAsset
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	ECharacter Character;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	USkeletalMesh* Mesh;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	USkeletalMesh* Pawn;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Health;
@@ -25,5 +32,8 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TMap<UMove*, UAnimSequenceBase*> Animations;
-	
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EDeed))
+	int32 Requirements;
+
 };
