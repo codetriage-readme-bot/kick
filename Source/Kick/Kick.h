@@ -5,17 +5,6 @@
 #include "Engine.h"
 
 
-UENUM(BlueprintType)
-enum class ECharacter : uint8
-{
-	Generic,
-	Keni,
-	Ramos,
-	Tonka,
-	Silver
-};
-
-
 UENUM(BlueprintType, meta = (Bitflags))
 enum class EMoveType : uint8
 {
@@ -109,7 +98,8 @@ enum class EDeed : uint8
 	Deed1 UMETA(DisplayName = "Met Tonka"),
 	Deed2 UMETA(DisplayName = "Beat K1"),
 	Deed4 UMETA(DisplayName = "Beat T1"),
-	Deed5 UMETA(DisplayName = "Escaped")
+	Deed5 UMETA(DisplayName = "Escaped"),
+	Deed6 UMETA(DisplayName = "Unlocked a Thing")
 };
 
 ENUM_CLASS_FLAGS(EDeed)

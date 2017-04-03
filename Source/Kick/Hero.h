@@ -5,11 +5,11 @@
 #include "kick.h"
 #include "FighterType.h"
 #include "Engine/DataAsset.h"
-#include "Heroe.generated.h"
+#include "Hero.generated.h"
 
 
 UCLASS(BlueprintType)
-class KICK_API UHeroe : public UDataAsset
+class KICK_API UHero : public UDataAsset
 {
 	GENERATED_BODY()
 
@@ -19,6 +19,6 @@ public:
 	TSet<UFighterType*> Fighters;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	FColor Color;
+	FLinearColor Color;
 
 };

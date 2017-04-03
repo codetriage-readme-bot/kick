@@ -3,7 +3,7 @@
 #pragma once
 
 #include "kick.h"
-#include "heroe.h"
+#include "hero.h"
 #include "FighterType.h"
 #include "LevelSequence.h"
 #include "Engine/DataAsset.h"
@@ -30,7 +30,7 @@ public:
 	int32 Requirements;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	TArray<UHeroe*> Heroes;
+	TArray<UHero*> Heroes;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSet<UFighterType*> Enemies;

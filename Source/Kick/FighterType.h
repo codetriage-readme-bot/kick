@@ -16,9 +16,6 @@ class KICK_API UFighterType : public UDataAsset
 public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	ECharacter Character;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	USkeletalMesh* Mesh;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
@@ -32,6 +29,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TMap<UMove*, UAnimSequenceBase*> Animations;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UTexture* Portrait;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EDeed))
 	int32 Requirements;
