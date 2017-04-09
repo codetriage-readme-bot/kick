@@ -4,35 +4,17 @@
 
 #include "Engine.h"
 
-
 UENUM(BlueprintType, meta = (Bitflags))
 enum class EMoveType : uint8
 {
 	Stance,
 	Locomotion,
-	Impulsion,
-	Transition,
-	Guard,
-	Damage,
-	Basic,
+	Attack,
 	Special,
 	Super
 };
 
 ENUM_CLASS_FLAGS(EMoveType)
-
-
-UENUM(BlueprintType)
-enum class EBlockLevel : uint8
-{
-	Stance,
-	Locomotion,
-	Impulsion,
-	Transition,
-	Basic,
-	Special,
-	Super
-};
 
 
 UENUM(BlueprintType, meta = (Bitflags))
@@ -71,15 +53,6 @@ enum class EInputState : uint8
 ENUM_CLASS_FLAGS(EInputState)
 
 
-UENUM(BlueprintType)
-enum class EModiferState : uint8
-{
-	Any,
-	Pressed,
-	Released
-};
-
-
 UENUM(BlueprintType, meta = (Bitflags))
 enum class EFighterState : uint8
 {
@@ -103,3 +76,44 @@ enum class EDeed : uint8
 };
 
 ENUM_CLASS_FLAGS(EDeed)
+
+
+//UENUM(BlueprintType)
+//enum class EElement : uint8
+//{
+//	None,
+//	Fire,
+//	Electricty,
+//	Ice,
+//	Gas,
+//	Water,
+//	Poison
+//};
+//
+//
+//UENUM(BlueprintType)
+//enum class EStrength : uint8
+//{
+//	Light,
+//	Fierce
+//};
+//
+//
+//UENUM(BlueprintType)
+//enum class ERepercussion : uint8
+//{
+//	None,
+//	Swipe,
+//	Project
+//};
+//
+//
+//UENUM(BlueprintType)
+//enum class EStrafe : uint8
+//{
+//	None,
+//	Up,
+//	Down,
+//	Top,
+//	Bottom
+//};
