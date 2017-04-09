@@ -4,6 +4,7 @@
 
 #include "kick.h"
 #include "FighterPawn.h"
+#include "LevelSequence.h"
 #include "Engine/DataAsset.h"
 #include "Move.generated.h"
 
@@ -40,33 +41,71 @@ struct FTrigger {
 };
 
 
-//USTRUCT(BlueprintType)
-//struct FHit {
-//
-//	GENERATED_USTRUCT_BODY()
-//
-//		UPROPERTY(EditAnywhere, BlueprintReadWrite)
-//		USoundBase* Sound;
-//
-//	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-//		float Damage;
-//
-//	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-//		float Shake;
-//
-//	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-//		ERepercussion Repercussion;
-//
-//	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-//		EStrength Strength;
-//
-//	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-//		EElement Element;
-//
-//	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EFighterState))
-//		int32 Break;
-//
-//};
+USTRUCT(BlueprintType)
+struct FHit {
+
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USoundBase* Sound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float Damage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float Freeze;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float Shake;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FVector2D Force;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	ERepercussion Repercussion;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EStrength Strength;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EElement Element;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EFighterState))
+	int32 Break;
+
+};
+
+
+USTRUCT(BlueprintType)
+struct FMotion {
+
+	GENERATED_USTRUCT_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool Inherit;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float Speed;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	FVector2D Impulse;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	bool WillLand;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float Gravity;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	float Drag;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	EStrafe Strafe;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool Flip;
+
+};
 
 
 UCLASS(BlueprintType)
@@ -89,13 +128,25 @@ public:
 	bool Invincible;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FTrigger> Triggers;
+	FMotion Motion;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSet<UMove*> PossibleMoves;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Conditions")
+	float Energy;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EDeed), Category = "Conditions")
+	int32 Requirements;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Conditions")
+	TArray<FTrigger> Triggers;
+
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Animation")
 	bool Loop;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Animation")
+	ULevelSequence* Cinematic;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Animation")
 	UMove* Reversal;

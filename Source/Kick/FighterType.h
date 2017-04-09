@@ -31,7 +31,7 @@ public:
 	TMap<UMove*, UAnimSequenceBase*> Animations;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	UTexture* Portrait;
+	UTexture2D* Portrait;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EDeed))
 	int32 Requirements;

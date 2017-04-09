@@ -7,11 +7,11 @@
 UENUM(BlueprintType, meta = (Bitflags))
 enum class EMoveType : uint8
 {
-	Stance,
-	Locomotion,
+	Basic,
+	Guard,
+	Hit,
 	Attack,
-	Special,
-	Super
+	Grab
 };
 
 ENUM_CLASS_FLAGS(EMoveType)
@@ -78,42 +78,40 @@ enum class EDeed : uint8
 ENUM_CLASS_FLAGS(EDeed)
 
 
-//UENUM(BlueprintType)
-//enum class EElement : uint8
-//{
-//	None,
-//	Fire,
-//	Electricty,
-//	Ice,
-//	Gas,
-//	Water,
-//	Poison
-//};
-//
-//
-//UENUM(BlueprintType)
-//enum class EStrength : uint8
-//{
-//	Light,
-//	Fierce
-//};
-//
-//
-//UENUM(BlueprintType)
-//enum class ERepercussion : uint8
-//{
-//	None,
-//	Swipe,
-//	Project
-//};
-//
-//
-//UENUM(BlueprintType)
-//enum class EStrafe : uint8
-//{
-//	None,
-//	Up,
-//	Down,
-//	Top,
-//	Bottom
-//};
+UENUM(BlueprintType)
+enum class EElement : uint8
+{
+	None,
+	Fire,
+	Electricty,
+	Ice,
+	Poison
+};
+
+
+UENUM(BlueprintType)
+enum class EStrength : uint8
+{
+	Light,
+	Fierce
+};
+
+
+UENUM(BlueprintType)
+enum class ERepercussion : uint8
+{
+	None,
+	Swipe,
+	Project
+};
+
+
+UENUM(BlueprintType)
+enum class EStrafe : uint8
+{
+	None,
+	Up,
+	Down,
+	Top,
+	Bottom
+};
