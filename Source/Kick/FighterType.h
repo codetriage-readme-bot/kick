@@ -15,23 +15,23 @@ class KICK_API UFighterType : public UDataAsset
 
 public:
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Appearance")
+	UTexture2D* Portrait;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Appearance")
 	USkeletalMesh* Mesh;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Appearance")
 	USkeletalMesh* Pawn;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Appearance")
+	FLinearColor Color;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Health;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	float Speed;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TMap<UMove*, UAnimSequenceBase*> Animations;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	UTexture2D* Portrait;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EDeed))
 	int32 Requirements;

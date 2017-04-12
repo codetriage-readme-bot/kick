@@ -14,5 +14,7 @@ class KICK_API AStageModeBase : public AGameMode
 
 	UPROPERTY(BlueprintReadOnly, Category = "GameMode|Stage")
 	TArray<UMove*> Moves;	
-	
+
+	UFUNCTION(BlueprintCallable, Category = "Game")
+	virtual void StartPlay() override;
 };

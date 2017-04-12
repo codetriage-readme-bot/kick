@@ -7,8 +7,8 @@
 
 AStageModeBase::AStageModeBase(const FObjectInitializer& ObjectInitializer) {
 	TArray<UObject*> Assets;
-	EngineUtils::FindOrLoadAssetsByPath(TEXT("/Game/Data/Moves/"), Assets, EngineUtils::ATL_Regular);
-
+	EngineUtils::FindOrLoadAssetsByPath(TEXT("/Game/Data/Moves"), Assets, EngineUtils::ATL_Regular);
+	UE_LOG(LogTemp, Warning, TEXT("Lenght %d"), Assets.Num());
 	for (UObject* Asset : Assets)
 	{
 		UMove* Move = Cast<UMove>(Asset);
@@ -17,4 +17,22 @@ AStageModeBase::AStageModeBase(const FObjectInitializer& ObjectInitializer) {
 			Moves.Add(Move);
 		}
 	}
+}
+
+void AStageModeBase::StartPlay()
+{
+	TArray<UObject*> Assets;
+	EngineUtils::FindOrLoadAssetsByPath(TEXT("/Game/Data/Moves"), Assets, EngineUtils::ATL_Regular);
+	UE_LOG(LogTemp, Warning, TEXT("Lenght %d"), Assets.Num());
+	for (UObject* Asset : Assets)
+	{
+		UMove* Move = Cast<UMove>(Asset);
+		UE_LOG(LogTemp, Warning, TEXT("Storing Move"));
+		if (Move)
+		{
+			Moves.Add(Move);
+		}
+	}
+
+	Super::StartPlay();
 }
