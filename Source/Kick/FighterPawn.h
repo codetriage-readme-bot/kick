@@ -6,7 +6,6 @@
 #include "FighterPawn.generated.h"
 
 class UBoxComponent;
-class UFighterSkeletalMeshComponent;
 class UFighterMovementComponent;
 
 UCLASS(config=Game, Blueprintable, BlueprintType)
@@ -23,7 +22,7 @@ class KICK_API AFighterPawn : public APawn {
     UBoxComponent* CollisionComponent;
     
     UPROPERTY(Category="Pawn", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
-    UFighterSkeletalMeshComponent* MeshComponent;
+    USkeletalMeshComponent* MeshComponent;
     
     UPROPERTY(Category="Pawn", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
     UFighterMovementComponent* MovementComponent;

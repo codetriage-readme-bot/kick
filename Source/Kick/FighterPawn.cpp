@@ -29,7 +29,7 @@ AFighterPawn::AFighterPawn(const FObjectInitializer& ObjectInitializer) {
     MovementComponent = ObjectInitializer.CreateDefaultSubobject<UFighterMovementComponent>(this, AFighterPawn::MovementComponentName);
     MovementComponent->UpdatedComponent = CollisionComponent;
     
-    MeshComponent = ObjectInitializer.CreateOptionalDefaultSubobject<UFighterSkeletalMeshComponent>(this, AFighterPawn::MeshComponentName);
+    MeshComponent = ObjectInitializer.CreateOptionalDefaultSubobject<USkeletalMeshComponent>(this, AFighterPawn::MeshComponentName);
     if (MeshComponent) {
         MeshComponent->AlwaysLoadOnClient = true;
         MeshComponent->AlwaysLoadOnServer = true;
