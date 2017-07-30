@@ -3,7 +3,6 @@
 #include "Kick.h"
 #include "FighterPawn.h"
 #include "FighterMovementComponent.h"
-#include "FighterSkeletalMeshComponent.h"
 
 FName AFighterPawn::MovementComponentName(TEXT("MovementComponent0"));
 FName AFighterPawn::CollisionComponentName(TEXT("CollisionComponent0"));

@@ -8,7 +8,7 @@ void UCustomGameInstance::Init()
 {
 	TMap<FString, UMove*> Moves;
 	TArray<UObject*> Assets;
-	EngineUtils::FindOrLoadAssetsByPath(TEXT("/Game/Moves"), Assets, EngineUtils::ATL_Regular);
+	EngineUtils::FindOrLoadAssetsByPath(TEXT("/Game/Data/Moves"), Assets, EngineUtils::ATL_Regular);
 	for (UObject* Asset : Assets)
 	{
 		UMove* Move = Cast<UMove>(Asset);
@@ -21,7 +21,7 @@ void UCustomGameInstance::Init()
 	Moves.GetKeys(Keys);
 
 	Assets.Empty();
-	EngineUtils::FindOrLoadAssetsByPath(TEXT("/Game/Fighters"), Assets, EngineUtils::ATL_Regular);
+	EngineUtils::FindOrLoadAssetsByPath(TEXT("/Game/Data/Profiles"), Assets, EngineUtils::ATL_Regular);
 	for (UObject* Asset : Assets)
 	{
 		UFighterType* Fighter = Cast<UFighterType>(Asset);

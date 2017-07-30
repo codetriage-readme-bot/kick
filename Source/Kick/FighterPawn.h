@@ -18,13 +18,13 @@ class KICK_API AFighterPawn : public APawn {
     static FName MovementComponentName;
     static FName CollisionComponentName;
 
-    UPROPERTY(Category = Pawn, VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+    UPROPERTY(Category ="Pawn", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess="true"))
     UBoxComponent* CollisionComponent;
     
-    UPROPERTY(Category="Pawn", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+    UPROPERTY(Category="Pawn", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess="true"))
     USkeletalMeshComponent* MeshComponent;
     
-    UPROPERTY(Category="Pawn", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
+    UPROPERTY(Category="Pawn", VisibleAnywhere, BlueprintReadOnly, meta = (AllowPrivateAccess="true"))
     UFighterMovementComponent* MovementComponent;
     
     UPROPERTY(BlueprintReadOnly, Category="Pawn|Fighter")

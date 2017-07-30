@@ -27,10 +27,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Appearance")
 	FLinearColor Color;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Appearance")
+	UMaterialInterface* Trail;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gameplay")
 	float Health;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Gameplay")
 	float Speed;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EDeed))
