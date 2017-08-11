@@ -115,3 +115,23 @@ enum class EStrafe : uint8
 	Top,
 	Bottom
 };
+
+
+UENUM(BlueprintType)
+enum class EHittability : uint8
+{
+	Hittable,
+	Guarding,
+	Invincible,
+	Intengible
+};
+
+
+UENUM(BlueprintType)
+enum class EHitState : uint8
+{
+	Disabled,
+	Active,
+	Consumed,
+	Landed
+};

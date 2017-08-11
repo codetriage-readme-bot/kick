@@ -85,41 +85,47 @@ class KICK_API UMove : public UDataAsset
 
 public:
 
+	// This will go away.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	EMoveType Type;
 
+	// This will go away.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EMoveType))
 	int32 Disables;
-
+	
+	// This will go away.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	EFighterState State;
-
+	
+	// This will go away.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	bool Invincible;
 
+	// This will go away.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TArray<FMotion> Motions;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSet<UMove*> PossibleMoves;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Conditions")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Requirements")
 	float Energy;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EDeed), Category = "Conditions")
-	int32 Requirements;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EDeed), Category = "Requirements")
+	int32 Deeds;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Conditions")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Requirements")
 	TArray<FTrigger> Triggers;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Animation")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Animation")
 	bool Loop;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Animation")
+	UMove* Reversal;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Animation")
 	ULevelSequence* Cinematic;
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="Animation")
-	UMove* Reversal;
 
 };
 
@@ -129,23 +135,8 @@ struct FHit {
 
 	GENERATED_USTRUCT_BODY()
 
-	UPROPERTY(BlueprintReadWrite)
-	bool Landed;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float Damage;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float Freeze;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	float Shake;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	USoundBase* Sound;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FVector2D Force;
+	EHitState State;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	ERepercussion Repercussion;
@@ -162,4 +153,18 @@ struct FHit {
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	TArray<UMove*> Targets;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Overrides")
+	float Damage;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Overrides")
+	FVector2D Force;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Overrides")
+	float Freeze;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Overrides")
+	float Shake;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Overrides")
+	USoundBase* Sound;
 };
