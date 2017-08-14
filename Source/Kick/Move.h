@@ -167,4 +167,7 @@ struct FHit {
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Overrides")
 	USoundBase* Sound;
+
+	UPROPERTY(BlueprintReadWrite)
+	TArray<AFighterPawn*> Victims;
 };
