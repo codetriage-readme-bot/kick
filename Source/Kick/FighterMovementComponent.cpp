@@ -5,9 +5,8 @@
 
 UFighterMovementComponent::UFighterMovementComponent(const FObjectInitializer& ObjectInitializer): Super(ObjectInitializer) {
     Impulse = FVector::ZeroVector;
-    Drag = 10.0f;
+    Drag = 0.0f;
     Grounded = false;
-    Speed = 0.0f;
     Frozen = false;
     TargetDepth = 0.0f;
     Recursions = 0;
@@ -96,8 +95,7 @@ void UFighterMovementComponent::UpdateVelocity(float DeltaTime) {
     Impulse = FVector::ZeroVector;
     
     // Updating horizontal velocity.
-    float DraggedVelocity = Velocity.X * (1 - Drag * DeltaTime);
-    Velocity.X = Velocity.X > 0.0f ? FGenericPlatformMath::Max(DraggedVelocity, Speed) : FGenericPlatformMath::Min(DraggedVelocity, Speed);
+    Velocity.X = Velocity.X * (1 - Drag * DeltaTime);
 
     // Updating vertical velocity.
     Velocity.Z += GetGravityZ() * GravityInfluence * DeltaTime;
@@ -121,15 +119,6 @@ void UFighterMovementComponent::UpdateVelocity(float DeltaTime) {
 
 void UFighterMovementComponent::AddImpulse(FVector NewImpulse) {
     Impulse += NewImpulse;
-}
-
-float UFighterMovementComponent::GetSpeed() {
-	return Speed;
-}
-
-void UFighterMovementComponent::SetSpeed(float NewSpeed) {
-    Speed = NewSpeed; 
-    Velocity.X = NewSpeed;
 }
 
 bool UFighterMovementComponent::IsAbove(UBoxComponent* OtherComponent) {

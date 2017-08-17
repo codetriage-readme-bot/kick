@@ -88,22 +88,10 @@ public:
 	// This will go away.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	EMoveType Type;
-
-	// This will go away.
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta = (Bitmask, BitmaskEnum = EMoveType))
-	int32 Disables;
 	
 	// This will go away.
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	EFighterState State;
-	
-	// This will go away.
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	bool Invincible;
-
-	// This will go away.
-	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TArray<FMotion> Motions;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	TSet<UMove*> PossibleMoves;

@@ -29,12 +29,6 @@ class KICK_API UFighterMovementComponent : public UMovementComponent
     
     UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
     virtual void AddImpulse(FVector NewImpulse);
-
-	UFUNCTION(BlueprintCallable, Category = "Pawn|Fighter")
-	virtual float GetSpeed();
-
-    UFUNCTION(BlueprintCallable, Category="Pawn|Fighter")
-    virtual void SetSpeed(float NewSpeed);
     
     virtual void TickComponent(float DeltaTime, enum ELevelTick TickType, FActorComponentTickFunction *ThisTickFunction) override;
     
@@ -42,9 +36,6 @@ protected:
     
     UPROPERTY()
     uint32 Recursions;
-    
-    UPROPERTY()
-    float Speed;
 
     UPROPERTY()
     FVector Impulse;
